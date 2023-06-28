@@ -1,0 +1,120 @@
+-- Todas las siguientes tablas y sus campos, seran creados por JPA al levantar la aplicación
+-- solo necesita tener la base de datos creada en oracle DB, la base de datos se debe llamar con indica 
+-- en el application.properties del proyecto
+
+INSERT INTO condicion (desc_condicion, fecha_registro)
+VALUES('Operativo', SYSDATE);
+
+INSERT INTO condicion (desc_condicion, fecha_registro)
+VALUES('Emergencia', SYSDATE);
+
+INSERT INTO condicion (desc_condicion, fecha_registro)
+VALUES('Cerrado', SYSDATE);
+
+INSERT INTO condicion (desc_condicion, fecha_registro)
+VALUES('Cuarentena', SYSDATE);
+
+INSERT INTO condicion (desc_condicion, fecha_registro)
+VALUES('Bajo Revision', SYSDATE);
+
+-- LLenar provincias
+
+INSERT INTO provincia (desc_provincia, fecha_registro) 
+VALUES ('Lima', SYSDATE);
+
+INSERT INTO provincia (desc_provincia, fecha_registro) 
+VALUES('Huarochirí', SYSDATE);
+
+INSERT INTO provincia (desc_provincia, fecha_registro) 
+VALUES('Cañete', SYSDATE);
+
+INSERT INTO provincia (desc_provincia, fecha_registro) 
+VALUES('Yauyos', SYSDATE);
+
+INSERT INTO provincia (desc_provincia, fecha_registro) 
+VALUES('Huaral', SYSDATE);
+
+--INSERTAR DISTRITOS
+
+INSERT INTO distrito(desc_distrito, fecha_registro,id_provincia) 
+VALUES ('Surquillo', SYSDATE,1);
+
+INSERT INTO distrito(desc_distrito, fecha_registro,id_provincia) 
+VALUES ('Breña', SYSDATE,1);
+
+INSERT INTO distrito(desc_distrito, fecha_registro,id_provincia) 
+VALUES ('Los Olivos', SYSDATE,1);
+
+INSERT INTO distrito(desc_distrito, fecha_registro,id_provincia) 
+VALUES ('San Vicente', SYSDATE,3);
+
+INSERT INTO distrito(desc_distrito, fecha_registro,id_provincia) 
+VALUES ('Asia', SYSDATE,3);
+
+-- Insertar gerentes
+
+INSERT INTO gerente (desc_gerente, fecha_registro) 
+VALUES ('Fernanda Flores', SYSDATE);
+
+INSERT INTO gerente (desc_gerente, fecha_registro) 
+VALUES ('Alejandro Vargas', SYSDATE);
+
+INSERT INTO gerente (desc_gerente, fecha_registro) 
+VALUES ('Jimena Cardenas', SYSDATE);
+
+INSERT INTO gerente (desc_gerente, fecha_registro) 
+VALUES ('Sofia Villanueva', SYSDATE);
+
+INSERT INTO gerente (desc_gerente, fecha_registro) 
+VALUES ('Diego Soto', SYSDATE);
+
+-- Insertar Sedes
+
+INSERT INTO sede (desc_sede, fecha_registro)
+VALUES('Sede principal', SYSDATE);
+
+INSERT INTO sede (desc_sede, fecha_registro)
+VALUES('Sede regional', SYSDATE);
+
+INSERT INTO sede (desc_sede, fecha_registro)
+VALUES('Sede de ventas', SYSDATE);
+
+INSERT INTO sede (desc_sede, fecha_registro)
+VALUES('Sede de operaciones', SYSDATE);
+
+INSERT INTO sede (desc_sede, fecha_registro)
+VALUES('Sede administrativa', SYSDATE);
+
+-- Insertar Hospitales
+
+INSERT INTO hospitales (
+    antiguedad,
+    area,
+    fecha_registro,
+    id_condicion,
+    id_distrito,
+   id_gerente,
+    id_sede,
+    nombre
+) VALUES
+(5,'50000 m2', SYSDATE,2,3,1,1,'Hospital de la Cruz Roja');
+
+INSERT INTO hospitales (
+    antiguedad,
+    area,
+    fecha_registro,
+    id_condicion,
+    id_distrito,
+    id_gerente,
+    id_sede,
+    nombre
+) VALUES
+(8,'60000 m2', SYSDATE,2,1,2,1,'Centro Médico San Francisco');
+
+-- Insertar Usuarios con contraseña encriptada:
+INSERT INTO usuarios(contrasenia, nombre_usuario) 
+VALUES('$2a$10$9mC61xM8vkn/sP5POLRAjuPSSGHFW.DWmhTbme8XJa02yNKfQMp4.','admin');
+-- La contraseña de admin es : admin123
+INSERT INTO usuarios(contrasenia, nombre_usuario) 
+VALUES('$2a$10$mIPEXR1guE8mZDDBCnL9x.43KWacWRC1i0Oodu8LStNdqIPi.J8yi','miki');
+-- La contraseña de miki es miki123

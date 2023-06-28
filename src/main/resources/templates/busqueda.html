@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Menu principal</title>
+	<link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<header th:replace="header :: header"></header>
+	<br>
+	<h2 class="text-center">Resultados de busqueda</h2>
+	<br>
+	<div class="container" th:if="${datos}">
+		<table class="table table-striped" >
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Distrito</th>
+					<th>Gerente</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="hospital:${resultados}">
+					<td th:text="${hospital.nombre}"></td>
+					<td th:text="${hospital.distrito}"></td>
+					<td th:text="${hospital.gerente}"></td>
+					<td>
+						<a th:href="@{/main/editar/{id}(id=${hospital.id})}" class="btn btn-warning">Editar</a>
+						<button type="button" class="btn btn-danger" data-bs-toggle="modal" th:attr="data-bs-target='#' + ${hospital.id}" >Eliminar</button>
+					</td>
+					<!-- Modal -->
+					<div class="modal fade" th:id="${hospital.id}" tabindex="-1" role="dialog" aria-labelledby="eliminarHospitalModalLabel" aria-hidden="true">
+					    <div class="modal-dialog" role="document">
+					        <div class="modal-content">
+					            <div class="modal-header">
+					                <h5 class="modal-title" id="eliminarHospitalModalLabel">Eliminar hospital</h5>
+					                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					            </div>
+					            <div class="modal-body">
+					                ¿Está seguro de que desea eliminar este registro?
+					            </div>
+					            <div class="modal-footer">
+					                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+					                <a th:href="@{/main/{id}(id=${hospital.id})}" class="btn btn-danger">Confirmar</a>
+					            </div>
+					        </div>
+					    </div>
+					</div>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+	</div>
+	<div class="container d-flex justify-content-center align-items-center" >
+		<div class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+			<p>Se encontraron <spa th:text="${cantidad}"></spa> registros<p>
+		</div>
+	</div>
+	<hr>
+	<div class="container">
+		<div class="d-flex justify-content-center align-items-center">
+			<div>
+				<a class="btn btn-primary" href="/main">Volver al menu principal</a>
+			</div>
+		</div>
+	</div>
+	<script src="../static/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+</body>
+</html>
